@@ -2,6 +2,7 @@ import pygame
 
 from player import Player
 from ui.button import Button
+from ui.draw import draw_game
 
 pygame.init()
 
@@ -16,8 +17,6 @@ click_button = Button(
     "HAMSTER"
 )
 
-font = pygame.font.SysFont(None, 40)
-
 running = True
 
 while running:
@@ -29,9 +28,7 @@ while running:
         if click_button.clicked(event):
             player.click()
 
-    screen.fill((30, 30, 30))
-
-    click_button.draw(screen, font)
+    draw_game(screen, player, click_button)
 
     pygame.display.flip()
     clock.tick(60)

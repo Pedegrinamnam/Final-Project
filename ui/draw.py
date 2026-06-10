@@ -1,14 +1,16 @@
 import pygame
 
-font = pygame.font.SysFont(None, 40)
+def draw_game(screen, player, click_button):
+    font = pygame.font.SysFont(None, 40)
 
-def draw_game(screen, player):
     screen.fill((30, 30, 30))
 
-    money_text = font.render(
-        f"Money: {int(player.money)}",
+    coins_text = font.render(
+        f"Coins: {player.money}",
         True,
-        (255, 255, 255)
+        (255, 215, 0)
     )
 
-    screen.blit(money_text, (20, 20))
+    screen.blit(coins_text, (20, 20))
+
+    click_button.draw(screen, font)
