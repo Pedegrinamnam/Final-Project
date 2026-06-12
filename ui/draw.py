@@ -6,7 +6,7 @@ def draw_game(screen, player, click_button):
     screen.fill((30, 30, 30))
 
     coins_text = font.render(
-        f"Coins: {player.money}",
+        f"KRIPTA: {int(player.money)}",
         True,
         (255, 215, 0)
     )

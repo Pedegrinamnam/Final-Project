@@ -21,15 +21,11 @@ running = True
 
 while running:
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             running = False
-
         if click_button.clicked(event):
             player.click()
-
     draw_game(screen, player, click_button)
-
     pygame.display.flip()
     clock.tick(60)
 
