@@ -16,7 +16,16 @@ def draw_game(screen, player, click_button, shop_button):
     shop_button.draw(screen, font)
 
 
-def draw_shop(screen, player, back_button):
+def draw_shop(
+    screen,
+    player,
+    back_button,
+    house_button,
+    food_button,
+    wheel_button,
+    big_house_button,
+    friend_button
+):
     font = pygame.font.SysFont(None, 40)
 
     screen.fill((20, 20, 20))
@@ -37,24 +46,10 @@ def draw_shop(screen, player, back_button):
 
     screen.blit(money_text, (20, 20))
 
-    upgrades = [
-        "Дом - 10$",
-        "Хавалка - 50$",
-        "Колесо - 250$",
-        "ДомПобольше - 1000$"
-    ]
-
-    y = 180
-
-    for upgrade in upgrades:
-        text = font.render(
-            upgrade,
-            True,
-            (255, 255, 255)
-        )
-
-        screen.blit(text, (450, y))
-
-        y += 60
+    house_button.draw(screen, font)
+    food_button.draw(screen, font)
+    wheel_button.draw(screen, font)
+    big_house_button.draw(screen, font)
+    friend_button.draw(screen, font)
 
     back_button.draw(screen, font)

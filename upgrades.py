@@ -1,23 +1,33 @@
 import pygame
 # Улучшения
-UPGRADES = {
+upgrades = {
     "Дом": {
         "cost": 10,
-        "income": 1
+        "bonus": 1,
+        "limit": 5
     },
 
     "Хавалка": {
-        "cost": 50,
-        "income": 5
+        "cost": 500,
+        "bonus": 10,
+        "limit": 5
     },
 
     "Колесо": {
-        "cost": 250,
-        "income": 20
+        "cost": 2500,
+        "bonus": 50,
+        "limit": 5
+    },
+
+    "Друг": {
+        "cost": 5000,
+        "income": 1,
+        "limit": None
     },
 
     "ДомПобольше": {
-        "cost": 1000,
-        "income": 100
-    }
+        "cost": 10000,
+        "bonus": 100,
+        "limit": 5
+    },
 }
