@@ -37,7 +37,7 @@ class Player:
     # Сила клика
     def get_click_power(self):
         return (
-        1 +
+        1000 +
         self.upgrades["Дом"] * 1 +
         self.upgrades["Хавалка"] * 10 +
         self.upgrades["Колесо"] * 50 +

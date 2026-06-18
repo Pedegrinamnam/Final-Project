@@ -1,7 +1,7 @@
 import pygame
 
 from player import Player
-from ui.draw import draw_game, draw_shop
+from ui.draw import draw_game, draw_shop, draw_rebirth
 from ui.button import Button
 
 pygame.init()
@@ -11,6 +11,8 @@ clock = pygame.time.Clock()
 
 player = Player()
 shop_open = False
+rebirth_open = False
+
 # Сам хомяк (Хомячная кнопка)
 click_button = Button(
     500, 250,
@@ -23,18 +25,30 @@ shop_button = Button(
     200, 50,
     "Shop"
 )
-# Кнопка выхода из магазина
+# Кнопка выхода из магазина (Выходная кнопка)
 back_button = Button(
     20, 650,
     200, 50,
     "Back"
 )
+# Кнопка перерождения (Перерожденная кнопка)
+rebirth_button = Button(
+    840, 650,
+    200, 50,
+    "REBIRTH"
+)
+# Кнопка выхода из перерождения (Выходно-перерожденная кнопка)
+rebirth_back_button = Button(
+    20, 650,
+    200, 50,
+    "BACK"
+)
 
 house_button = Button(400, 180, 300, 50, "Дом - 10$")
-food_button = Button(400, 250, 300, 50, "Хавалка - 50$")
+food_button = Button(400, 250, 300, 50, "Хавалка - 500$")
 wheel_button = Button(400, 320, 300, 50, "Колесо - 250$")
-big_house_button = Button(400, 390, 300, 50, "ДомПобольше - 1000$")
-friend_button = Button(400, 460, 300, 50, "Друг - 1000$")
+friend_button = Button(400, 460, 300, 50, "Друг - 5000$")
+big_house_button = Button(400, 390, 320, 50, "ДомПобольше - 10000$")
 
 running = True
 
@@ -71,6 +85,15 @@ while running:
         # Закрыть магаз
         if shop_open and back_button.clicked(event):
             shop_open = False
+        # Открыть перерождение
+        if not shop_open and not rebirth_open and rebirth_button.clicked(event):
+            rebirth_open = True
+        # Открыть перерождение
+        if not shop_open and not rebirth_open and rebirth_button.clicked(event):
+            rebirth_open = True
+        # Закрыть перерождение
+        if rebirth_open and rebirth_back_button.clicked(event):
+            rebirth_open = False
 
     if shop_open:
         draw_shop(
@@ -80,15 +103,23 @@ while running:
             house_button,
             food_button,
             wheel_button,
-            big_house_button,
-            friend_button
+            friend_button,
+            big_house_button
         )
+    elif rebirth_open:
+        draw_rebirth(
+            screen,
+            player,
+            rebirth_back_button
+        )
+
     else:
         draw_game(
             screen,
             player,
             click_button,
-            shop_button
+            shop_button,
+            rebirth_button
         )
 
     pygame.display.flip()
