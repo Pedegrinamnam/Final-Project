@@ -2,22 +2,44 @@ import pygame
 
 
 # Наш криптомайнер
-def draw_game(screen, player, click_button, shop_button, rebirth_button):
+def draw_game(
+    screen,
+    player,
+    click_button,
+    shop_button,
+    rebirth_button,
+    hamster_image,
+    coins_image,
+    coins
+):
     font = pygame.font.SysFont(None, 40)
 
     screen.fill((30, 30, 30))
+
+    # Монетки, которые делают динь-динь
+    for coin in coins:
+        screen.blit(
+            coins_image,
+            (coin["x"], coin["y"])
+        )
 
     money_text = font.render(
         f"MONEY: {int(player.money)}",
         True,
         (255, 215, 0)
     )
+
     screen.blit(money_text, (20, 20))
 
-    click_button.draw(screen, font)
+    # Хомяк
+    screen.blit(
+        hamster_image,
+        click_button.rect
+    )
+
+    # Кнопки
     shop_button.draw(screen, font)
     rebirth_button.draw(screen, font)
-
 
 # Ларёк
 def draw_shop(
@@ -60,7 +82,7 @@ def draw_shop(
 
 
 # Перерождения
-def draw_rebirth(screen, player, back_button):
+def draw_rebirth(screen, player, back_button, rebirth_confirm_button):
     font = pygame.font.SysFont(None, 40)
 
     screen.fill((15, 15, 15))
@@ -92,3 +114,5 @@ def draw_rebirth(screen, player, back_button):
     screen.blit(mult, (450, 320))
 
     back_button.draw(screen, font)
+
+    rebirth_confirm_button.draw(screen, font)

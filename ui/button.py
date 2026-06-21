@@ -6,9 +6,14 @@ class Button:
         self.text = text
 
     def draw(self, screen, font):
-        pygame.draw.rect(screen, (80, 80, 80), self.rect)
+        pygame.draw.rect(screen, (120, 120, 120), self.rect, border_radius=15)
 
-        text = font.render(self.text, True, (255, 255, 255))
+        text = font.render(
+            self.text,
+            True,
+            (255, 255, 255)
+        )
+
         screen.blit(
             text,
             text.get_rect(center=self.rect.center)
