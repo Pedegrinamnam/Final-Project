@@ -8,6 +8,7 @@ def draw_game(
     click_button,
     shop_button,
     rebirth_button,
+    reset_button,
     hamster_image,
     coins_image,
     coins
@@ -36,11 +37,10 @@ def draw_game(
         hamster_image,
         click_button.rect
     )
-
     # Кнопки
     shop_button.draw(screen, font)
     rebirth_button.draw(screen, font)
-
+    reset_button.draw(screen, font)
 # Ларёк
 def draw_shop(
     screen,

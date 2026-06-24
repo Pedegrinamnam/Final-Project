@@ -2,6 +2,7 @@ import pygame
 
 
 
+
 # Еее, мьюзик
 import pygame
 
@@ -11,13 +12,12 @@ class SoundManager:
         pygame.mixer.init()
         self.current_music = None
         self.music_volume = 0.5
+        self.sound_volume = 0.5
 
     def play_music(self, path):
         if self.current_music == path:
             return
-
         self.current_music = path
-
         pygame.mixer.music.stop()
         pygame.mixer.music.load(path)
         pygame.mixer.music.play(-1)

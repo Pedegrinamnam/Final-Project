@@ -5,7 +5,7 @@ from player import Player
 from ui.draw import draw_game, draw_shop, draw_rebirth
 from sound_manager import SoundManager
 from ui.button import Button
-from save_manager import save_game, load_game
+from save_manager import save_game, load_game, reset_save
 
 pygame.init()
 
@@ -28,7 +28,6 @@ sounds.play_music(
 ralsei_image = pygame.image.load(
     "assets/Lay_Kaard.gif"
 )
-
 ralsei_image = pygame.transform.scale(
     ralsei_image,
     (250, 180)
@@ -86,6 +85,12 @@ coins = []
 rules_timer = 0
 shop_open = False
 rebirth_open = False
+# СБРОС (Кнопка !СБРОСА!)
+reset_button = Button(
+    20, 580,
+    200, 50,
+    "!RESET!"
+)
 
 # Сам хомяк (Хомячная кнопка)
 click_button = Button(
@@ -126,9 +131,9 @@ rebirth_confirm_button = Button(
 # Кнопки всяких улучшалок
 house_button = Button(400, 180, 300, 50, "Дом - 10$")
 food_button = Button(400, 250, 300, 50, "Хавалка - 500$")
-wheel_button = Button(400, 320, 300, 50, "Колесо - 250$")
+wheel_button = Button(400, 320, 300, 50, "Колесо - 2500$")
 friend_button = Button(400, 460, 300, 50, "Друг - 5000$")
-big_house_button = Button(400, 390, 320, 50, "ДомПобольше - 10000$")
+big_house_button = Button(400, 390, 380, 50, "ДомПобольше - 10000$")
 
 running = True
 # Вайл раннинг
@@ -171,6 +176,7 @@ while running:
                 })
         # Открыть магаз
         if not shop_open and shop_button.clicked(event):
+            sounds.play_sound("assets/Zvuk_Vhoda.mp3")
             shop_open = True
         # Закрыть магаз
         if shop_open and back_button.clicked(event):
@@ -187,6 +193,16 @@ while running:
         # Кнопка перерождения
         if rebirth_open and rebirth_confirm_button.clicked(event):
             player.rebirth()
+        # СБРОСТИСЯ
+        if reset_button.clicked(event):
+            reset_save()
+            player = Player()
+
+    house_button.text = f"Дом - 10$ ({player.upgrades['Дом']}/5)"
+    food_button.text = f"Хавалка - 500$ ({player.upgrades['Хавалка']}/5)"
+    wheel_button.text = f"Колесо - 2500$ ({player.upgrades['Колесо']}/5)"
+    big_house_button.text = f"ДомПобольше - 10000$ ({player.upgrades['ДомПобольше']}/5)"
+    friend_button.text = f"Друг - 5000$ ({player.upgrades['Друг']})"
 
 # Иф шоп опен
     if shop_open:
@@ -218,10 +234,12 @@ while running:
             click_button,
             shop_button,
             rebirth_button,
+            reset_button,
             hamster_image,
             coins_image,
             coins
         )
+
     if shop_open:
         sounds.play_music("assets/M&F.mp3")
     elif rebirth_open:

@@ -1,4 +1,10 @@
 import json
+import os
+
+
+def reset_save():
+    if os.path.exists("save.json"):
+        os.remove("save.json")
 
 # Спустя столько лет...
 def save_game(player):
