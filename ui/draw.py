@@ -50,27 +50,16 @@ def draw_shop(
     food_button,
     wheel_button,
     friend_button,
-    big_house_button
+    big_house_button,
+    rules_image
 ):
     font = pygame.font.SysFont(None, 40)
 
     screen.fill((20, 20, 20))
 
-    title = font.render(
-        "SHOP",
-        True,
-        (255, 255, 255)
-    )
+    # Рулс Каард
+    screen.blit(rules_image, (900, 350))
 
-    screen.blit(title, (570, 50))
-
-    money_text = font.render(
-        f"MONEY: {int(player.money)}",
-        True,
-        (255, 215, 0)
-    )
-
-    screen.blit(money_text, (20, 20))
 
     house_button.draw(screen, font)
     food_button.draw(screen, font)
@@ -82,10 +71,21 @@ def draw_shop(
 
 
 # Перерождения
-def draw_rebirth(screen, player, back_button, rebirth_confirm_button):
+def draw_rebirth(
+    screen,
+    player,
+    back_button,
+    rebirth_confirm_button,
+    black_hole_image):
     font = pygame.font.SysFont(None, 40)
 
     screen.fill((15, 15, 15))
+
+    # Чёрная дыра которая делает оаоаоаОАОАОАОАОАОАОАООАООАОАОАОАОАОАОАОАООААОАОАОАОАОАОАОАОАОАОАООАОАОААААААААААА
+    screen.blit(
+        black_hole_image,
+        (-50, -100)
+    )
 
     title = font.render(
         "REBIRTH",
