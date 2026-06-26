@@ -41,6 +41,20 @@ def draw_game(
     shop_button.draw(screen, font)
     rebirth_button.draw(screen, font)
     reset_button.draw(screen, font)
+
+    rebirth_text = font.render(
+        f" {player.rebirths}",
+        True,
+        (255, 255, 255)
+    )
+
+    screen.blit(
+        rebirth_text,
+        (
+            rebirth_button.rect.x,
+            rebirth_button.rect.y - 40
+        )
+    )
 # Ларёк
 def draw_shop(
     screen,
